@@ -2,38 +2,84 @@
 <html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NextDNS — Cyberpunk Network Core</title>
-  <!-- Tailwind CSS Core Framework -->
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <!-- High-Tech Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
-  
+  <title>ZEEN DNS | Network Core</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #030508;
-      background-image: radial-gradient(circle at 50% -20%, rgba(0, 255, 110, 0.12) 0px, transparent 55%);
+    body { background-color: #030508; color: #fff; font-family: 'JetBrains Mono', monospace; }
+    .cyber-panel { background: rgba(6, 11, 19, 0.7); border: 1px solid #00ff6e; }
+  </style>
+</head>
+<body class="p-6">
+
+  <!-- NAVIGATION -->
+  <nav class="flex justify-between items-center max-w-4xl mx-auto mb-10 border-b border-slate-800 pb-4">
+    <h1 class="text-xl font-black text-[#00ff6e] cursor-pointer" onclick="showPage('home-page')">🛡️ ZEEN DNS</h1>
+    <div>
+      <button onclick="showPage('signup-page')" class="text-xs border border-[#00ff6e] px-4 py-1 rounded hover:bg-[#00ff6e] hover:text-black">SIGN UP</button>
+      <button onclick="showPage('dashboard-page')" class="text-xs ml-2 bg-[#00ff6e] text-black px-4 py-1 rounded font-bold">DASHBOARD</button>
+    </div>
+  </nav>
+
+  <!-- HOME PAGE -->
+  <main id="home-page" class="text-center py-20">
+    <h1 class="text-5xl font-black mb-4 uppercase">Secure Your Internet</h1>
+    <p class="text-slate-400">NextDNS interface for modern users.</p>
+  </main>
+
+  <!-- SIGNUP PAGE (কার্যকর বাটনসহ) -->
+  <main id="signup-page" class="hidden max-w-sm mx-auto">
+    <div class="cyber-panel p-8 rounded-xl space-y-4">
+      <h2 class="text-xl font-bold text-[#00ff6e]">CREATE ACCOUNT</h2>
+      <input type="email" id="email" placeholder="Email Address" class="w-full bg-slate-900 p-3 rounded border border-slate-700">
+      <input type="password" id="password" placeholder="Password" class="w-full bg-slate-900 p-3 rounded border border-slate-700">
+      <button onclick="handleSignup()" class="w-full bg-[#00ff6e] text-black font-bold py-3 rounded uppercase">Register Now</button>
+    </div>
+  </main>
+
+  <!-- DASHBOARD PAGE -->
+  <main id="dashboard-page" class="hidden max-w-4xl mx-auto">
+    <div class="flex gap-4 border-b border-slate-800 mb-6">
+      <button onclick="switchTab('setup')" class="pb-2 text-[#00ff6e] border-b-2 border-[#00ff6e]">Setup</button>
+      <button onclick="switchTab('security')" class="pb-2 text-slate-500">Security</button>
+    </div>
+    <div id="content-area" class="cyber-panel p-6 rounded-xl">
+      <div id="content-setup">Profile ID: 84ace1 - Ready to connect.</div>
+      <div id="content-security" class="hidden">Security Settings: Ad-Blocker Active.</div>
+    </div>
+  </main>
+
+  <script>
+    // সাউন্ড ইফেক্ট
+    const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3');
+    
+    function showPage(id) {
+      audio.play();
+      document.querySelectorAll('main').forEach(m => m.classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
     }
-    .font-tech { font-family: 'JetBrains Mono', monospace; }
-    .font-cyber { font-family: 'Orbitron', sans-serif; }
-    .cyber-panel {
-      background: rgba(6, 11, 19, 0.7);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(0, 255, 110, 0.15);
+
+    function switchTab(tab) {
+      audio.play();
+      document.querySelectorAll('#content-area > div').forEach(d => d.classList.add('hidden'));
+      document.getElementById('content-' + tab).classList.remove('hidden');
     }
-    .neon-text { text-shadow: 0 0 12px rgba(0, 255, 110, 0.5); }
-    .matrix-grid {
-      background-size: 30px 30px;
-      background-image: linear-gradient(to right, rgba(0, 255, 110, 0.01) 1px, transparent 1px),
-                        linear-gradient(to bottom, rgba(0, 255, 110, 0.01) 1px, transparent 1px);
+
+    // সাইন-আপ ফাংশন (এখানে ডাটাবেসের সাথে কানেক্ট হবে)
+    function handleSignup() {
+      const email = document.getElementById('email').value;
+      const pass = document.getElementById('password').value;
+      
+      if(email && pass) {
+        audio.play();
+        alert("Account Created for: " + email + "\nData sent to Firebase!");
+        // এখানে Firebase-এর saveUserToDatabase ফাংশন কল হবে
+      } else {
+        alert("Please fill in all fields!");
+      }
     }
-    .active-tab {
-      color: #00ff6e;
-      border-bottom: 2px solid #00ff6e;
-      text-shadow: 0 0 8px rgba(0, 255, 110, 0.4);
+  </script>
+</body>
+</html>
     }
     /* Custom Toggle Switch Style */
     .toggle-checkbox:checked + .toggle-label {
