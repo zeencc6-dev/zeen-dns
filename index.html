@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NextDNS — Cyberpunk Network Core</title>
+  <!-- Tailwind CSS Core Framework -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <!-- High-Tech Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #030508;
+      background-image: radial-gradient(circle at 50% -20%, rgba(0, 255, 110, 0.12) 0px, transparent 55%);
+    }
+    .font-tech { font-family: 'JetBrains Mono', monospace; }
+    .font-cyber { font-family: 'Orbitron', sans-serif; }
+    .cyber-panel {
+      background: rgba(6, 11, 19, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 255, 110, 0.15);
+    }
+    .neon-text { text-shadow: 0 0 12px rgba(0, 255, 110, 0.5); }
+    .matrix-grid {
+      background-size: 30px 30px;
+      background-image: linear-gradient(to right, rgba(0, 255, 110, 0.01) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(0, 255, 110, 0.01) 1px, transparent 1px);
+    }
+    .active-tab {
+      color: #00ff6e;
+      border-bottom: 2px solid #00ff6e;
+      text-shadow: 0 0 8px rgba(0, 255, 110, 0.4);
+    }
+    /* Custom Toggle Switch Style */
+    .toggle-checkbox:checked + .toggle-label {
+      background-color: #00ff6e;
+    }
+    .toggle-checkbox:checked + .toggle-label .toggle-dot {
+      transform: translateX(100%);
+    }
+  </style>
+</head>
+<body class="text-slate-200 antialiased min-h-screen flex flex-col justify-between matrix-grid">
+
+  <!-- Header Module -->
+  <header class="w-full max-w-5xl mx-auto px-4 py-5 flex items-center justify-between border-b border-slate-900/80">
+    <div class="flex items-center gap-2.5 cursor-pointer" onclick="showPage('home-page')">
+      <div class="w-7 h-7 rounded-lg bg-[#05080f] border border-[#00ff6e]/40 flex items-center justify-center shadow-[0_0_10px_rgba(0,255,110,0.2)]">
+        <span class="text-[#00ff6e] font-black text-xs font-tech neon-text">Ω</span>
+      </div>
+      <span class="text-lg font-black uppercase tracking-wider font-cyber text-white">Next<span class="text-[#00ff6e] neon-text">DNS</span></span>
+    </div>
+
+    <!-- Right Side Profile Info (ভিডিওর মতো ড্রপডাউন লুক) -->
+    <div class="flex items-center gap-4">
+      <div id="profile-selector" class="hidden items-center gap-1.5 bg-[#060a12] border border-slate-800 px-2.5 py-1 rounded text-xs font-tech text-slate-300">
+        <span>My First Profile</span>
+        <svg class="w-3 h-3 text-[#00ff6e]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+      </div>
+      <span class="text-xs font-tech text-slate-400">my.nextdns.io</span>
+    </div>
+  </header>
+
+  <!-- ================= PAGE 1: HERO LANDING PAGE ================= -->
+  <main id="home-page" class="w-full max-w-4xl mx-auto px-5 py-16 text-center my-auto space-y-8 block">
+    <div class="inline-flex items-center gap-2.5 bg-[#060a12] border border-[#00ff6e]/30 rounded-lg px-4 py-2 text-[10px] font-bold tracking-widest text-[#00ff6e] font-tech shadow-[0_0_15px_rgba(0,255,110,0.05)]">
+      <span class="w-2 h-2 rounded-full bg-[#00ff6e] animate-pulse shadow-[0_0_8px_#00ff6e]"></span>
+      FIREWALL PROTOCOL ACTIVE // ONLINE
+    </div>
+
+    <h1 class="text-4xl md:text-6xl font-black text-white tracking-tight font-cyber uppercase leading-[1.1] max-w-3xl mx-auto">
+      The new <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">firewall</span> for the <span class="block mt-3 text-transparent bg-clip-text bg-gradient-to-r from-[#00ff6e] to-emerald-400 neon-text">modern Internet</span>
+    </h1>
+
+    <p class="text-xs md:text-sm text-slate-400 max-w-xl mx-auto leading-relaxed font-tech">
+      NextDNS protects you from all kinds of security threats, blocks ads and trackers on websites and in apps and provides a safe and supervised Internet for kids — on all devices.
+    </p>
+
+    <div class="flex items-center justify-center pt-4 max-w-xs mx-auto w-full">
+      <button onclick="showPage('dashboard-page')" class="w-full bg-[#00ff6e] text-[#030508] font-black text-xs font-tech tracking-widest uppercase py-4 rounded-xl transition-all duration-300 hover:scale-[1.02] shadow-[0_0_25px_rgba(0,255,110,0.35)] cursor-pointer">
+        Try it now →
+      </button>
+    </div>
+    <p class="text-[10px] font-bold text-slate-600 uppercase tracking-widest font-tech">No signup required. Sign up later to save settings.</p>
+  </main>
+
+
+  <!-- ================= PAGE 2: REAL NEXTDNS CONTROL PANEL ================= -->
+  <main id="dashboard-page" class="w-full max-w-5xl mx-auto px-4 py-6 flex-1 flex flex-col hidden">
+    
+    <!-- Video Style Sliding Horizontal Tabs Grid -->
+    <div class="w-full overflow-x-auto no-scrollbar border-b border-slate-900 mb-6">
+      <div class="flex items-center gap-6 text-xs font-tech font-bold uppercase tracking-wider pb-2 min-w-max">
+        <button onclick="switchTab('setup')" id="tab-setup" class="pb-1 text-slate-400 hover:text-white transition-colors active-tab">Setup</button>
+        <button onclick="switchTab('security')" id="tab-security" class="pb-1 text-slate-400 hover:text-white transition-colors">Security</button>
+        <button onclick="switchTab('privacy')" id="tab-privacy" class="pb-1 text-slate-400 hover:text-white transition-colors">Privacy</button>
+        <button onclick="switchTab('parental')" id="tab-parental" class="pb-1 text-slate-400 hover:text-white transition-colors">Parental Control</button>
+        <button onclick="switchTab('denylist')" id="tab-denylist" class="pb-1 text-slate-400 hover:text-white transition-colors">Denylist</button>
+        <button onclick="switchTab('allowlist')" id="tab-allowlist" class="pb-1 text-slate-400 hover:text-white transition-colors">Allowlist</button>
+        <button onclick="switchTab('analytics')" id="tab-analytics" class="pb-1 text-slate-400 hover:text-white transition-colors">Analytics</button>
+        <button onclick="switchTab('logs')" id="tab-logs" class="pb-1 text-slate-400 hover:text-white transition-colors">Logs</button>
+        <button onclick="switchTab('settings')" id="tab-settings" class="pb-1 text-slate-400 hover:text-white transition-colors">Settings</button>
+      </div>
+    </div>
+
+    <!-- ================= TAB CONTENTS ================= -->
+    <div id="tab-content-area" class="flex-1 space-y-6">
+      
+      <!-- 1. SETUP TAB CONTENT -->
+      <div id="content-setup" class="space-y-5 block">
+        <div class="p-4 rounded-xl border border-red-500/20 bg-red-500/5 flex items-start gap-3">
+          <span class="w-2 h-2 rounded-full bg-red-500 mt-1.5 animate-pulse shadow-[0_0_8px_#ef4444]"></span>
+          <p class="text-xs font-tech text-red-400 leading-tight">This device is not using NextDNS. This device is currently using "Etisalat, a joint stock company" as DNS resolver.</p>
+        </div>
+
+        <div class="cyber-panel rounded-xl p-5 space-y-4">
+          <h3 class="text-xs font-bold font-cyber text-[#00ff6e] uppercase tracking-wider">// Endpoints configuration</h3>
+          <div class="space-y-3.5 text-xs font-tech">
+            <div class="border-b border-slate-900 pb-2.5"><span class="text-slate-500 block text-[10px] uppercase">ID</span><span class="text-white font-bold tracking-wide">84ace1</span></div>
+            <div class="border-b border-slate-900 pb-2.5"><span class="text-slate-500 block text-[10px] uppercase">DNS-over-TLS/QUIC</span><span class="text-white">84ace1.dns.nextdns.io</span></div>
+            <div class="border-b border-slate-900 pb-2.5"><span class="text-slate-500 block text-[10px] uppercase">DNS-over-HTTPS</span><span class="text-white">https://dns.nextdns.io/84ace1</span></div>
+            <div><span class="text-slate-500 block text-[10px] uppercase">IPv6</span><span class="text-white block">2a07:a8c0::84:ace1</span><span class="text-white block">2a07:a8c1::84:ace1</span></div>
+          </div>
+        </div>
+
+        <div class="cyber-panel rounded-xl p-5 space-y-3">
+          <h3 class="text-xs font-bold font-cyber text-slate-400 uppercase tracking-wider">// Linked IP Matrix</h3>
+          <div class="flex items-center justify-between text-xs font-tech">
+            <div><span class="text-slate-500 block text-[10px] uppercase">DNS SERVERS</span><span class="text-white block">45.90.28.128</span><span class="text-white block">45.90.30.128</span></div>
+            <button class="bg-[#00ff6e]/10 border border-[#00ff6e]/40 text-[#00ff6e] px-3 py-1.5 rounded font-bold text-[10px] uppercase tracking-wider">🔗 Link IP</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. SECURITY TAB CONTENT -->
+      <div id="content-security" class="space-y-4 hidden">
+        <div class="cyber-panel rounded-xl p-5 flex items-center justify-between gap-4">
+          <div class="space-y-1"><h4 class="text-xs font-bold font-cyber text-white uppercase">Threat Intelligence Feeds</h4><p class="text-[11px] font-tech text-slate-400 leading-snug">Block domains known to distribute malware, launch phishing attacks.</p></div>
+          <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in"><input type="checkbox" checked id="toggle-sec-1" class="toggle-checkbox hidden"/><label for="toggle-sec-1" class="toggle-label block overflow-hidden h-5 rounded-full bg-slate-800 cursor-pointer"><span class="toggle-dot block h-5 w-5 rounded-full bg-white border-2 border-slate-800 transition-transform duration-200"></span></label></div>
+        </div>
+        <div class="cyber-panel rounded-xl p-5 flex items-center justify-between gap-4">
+          <div class="space-y-1"><h4 class="text-xs font-bold font-cyber text-white uppercase">AI-Driven Threat Detection <span class="text-[9px] bg-[#00ff6e]/10 text-[#00ff6e] px-1 rounded ml-1 font-tech">BETA</span></h4><p class="text-[11px] font-tech text-slate-400 leading-snug">Block millions of threats detected by our AI technology.</p></div>
+          <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in"><input type="checkbox" id="toggle-sec-2" class="toggle-checkbox hidden"/><label for="toggle-sec-2" class="toggle-label block overflow-hidden h-5 rounded-full bg-slate-800 cursor-pointer"><span class="toggle-dot block h-5 w-5 rounded-full bg-white border-2 border-slate-800 transition-transform duration-200"></span></label></div>
+        </div>
+        <div class="cyber-panel rounded-xl p-5 flex items-center justify-between gap-4">
+          <div class="space-y-1"><h4 class="text-xs font-bold font-cyber text-white uppercase">Google Safe Browsing</h4><p class="text-[11px] font-tech text-slate-400 leading-snug">Block malware and phishing domains using Google Safe Browsing APIs.</p></div>
+          <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in"><input type="checkbox" checked id="toggle-sec-3" class="toggle-checkbox hidden"/><label for="toggle-sec-3" class="toggle-label block overflow-hidden h-5 rounded-full bg-slate-800 cursor-pointer"><span class="toggle-dot block h-5 w-5 rounded-full bg-white border-2 border-slate-800 transition-transform duration-200"></span></label></div>
+        </div>
+      </div>
+
+      <!-- 3. PRIVACY TAB CONTENT -->
+      <div id="content-privacy" class="space-y-4 hidden">
+        <div class="cyber-panel rounded-xl p-5 space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-900 pb-2"><h4 class="text-xs font-bold font-cyber text-white uppercase">Blocklists Core Configuration</h4><button class="text-[10px] font-tech font-bold text-[#00ff6e] border border-[#00ff6e]/30 bg-[#00ff6e]/5 px-2.5 py-1 rounded uppercase">Add a Blocklist</button></div>
+          <div class="text-xs font-tech py-1"><span class="text-white block font-bold">NextDNS Ads & Trackers Blocklist</span><span class="text-slate-500 text-[10px]">79,700 entries • Updated 6 hours ago</span></div>
+        </div>
+        <div class="cyber-panel rounded-xl p-5 flex items-center justify-between gap-4">
+          <div class="space-y-1"><h4 class="text-xs font-bold font-cyber text-white uppercase">Block Disguised Third-Party Trackers</h4><p class="text-[11px] font-tech text-slate-400 leading-snug">Automatically detect and block cloaked trackers.</p></div>
+          <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in"><input type="checkbox" checked id="toggle-priv-1" class="toggle-checkbox hidden"/><label for="toggle-priv-1" class="toggle-label block overflow-hidden h-5 rounded-full bg-slate-800 cursor-pointer"><span class="toggle-dot block h-5 w-5 rounded-full bg-white border-2 border-slate-800 transition-transform duration-200"></span></label></div>
+        </div>
+      </div>
+
+      <!-- 4. PARENTAL CONTROL TAB CONTENT -->
+      <div id="content-parental" class="space-y-4 hidden">
+        <div class="cyber-panel rounded-xl p-5 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-900 pb-2.5"><h4 class="text-xs font-bold font-cyber text-slate-400 uppercase">// Restriction Control</h4></div>
+          <button class="w-full bg-slate-900/60 border border-slate-800 hover:border-slate-700 text-slate-300 font-tech text-xs py-3 rounded-lg uppercase tracking-wide font-bold">+ Add a website, app or game</button>
+          <button class="w-full bg-slate-900/60 border border-slate-800 hover:border-slate-700 text-slate-300 font-tech text-xs py-3 rounded-lg uppercase tracking-wide font-bold">+ Add a category</button>
+        </div>
+      </div>
+
+      <!-- 5. DENYLIST TAB CONTENT -->
+      <div id="content-denylist" class="space-y-4 hidden">
+        <div class="cyber-panel rounded-xl p-5 space-y-4">
+          <p class="text-[11px] font-tech text-slate-400 leading-tight">🛑 Denying a domain will automatically deny all its subdomains.</p>
+          <input type="text" placeholder="Add a domain..." class="w-full bg-[#05080f] border border-slate-800 focus:border-[#00ff6e] text-xs font-tech px-4 py-3 rounded-xl outline-none text-white transition-all"/>
+          <div class="text-center py-6 text-xs font-tech text-slate-600 uppercase tracking-widest">No domains blocked yet.</div>
+        </div>
+      </div>
+
+      <!-- 6. ALLOWLIST TAB CONTENT -->
+      <div id="content-allowlist" class="space-y-4 hidden">
+        <div class="cyber-panel rounded-xl p-5 space-y-4">
+          <p class="text-[11px] font-tech text-slate-400 leading-tight">✅ Allowing a domain will bypass all other filter blocklists config rules.</p>
+          <input type="text" placeholder="Add a domain..." class="w-full bg-[#05080f] border border-slate-800 focus:border-[#00ff6e] text-xs font-tech px-4 py-3 rounded-xl outline-none text-white transition-all"/>
+          <div class="text-center py-6 text-xs font-tech text-slate-600 uppercase tracking-widest">No domains allowed yet.</div>
+        </div>
+      </div>
+
+      <!-- 7. ANALYTICS TAB CONTENT -->
+      <div id="content-analytics" class="space-y-4 hidden">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="cyber-panel rounded-xl p-4 text-center"><span class="text-[10px] font-tech text-slate-500 block uppercase">Queries</span><span class="text-3xl font-cyber font-black text-white">0</span></div>
+          <div class="cyber-panel rounded-xl p-4 text-center"><span class="text-[10px] font-tech text-slate-500 block uppercase">Blocked</span><span class="text-3xl font-cyber font-black text-red-500">0</span></div>
+        </div>
+        <div class="cyber-panel rounded-xl p-6 text-center py-12">
+          <div class="w-12 h-12 border-2 border-[#00ff6e]/20 border-t-[#00ff6e] rounded-full animate-spin mx-auto mb-4"></div>
+          <p class="text-xs font-tech text-slate-500 uppercase tracking-wider">Analyzing Real-time Threat Matrix Logs...</p>
+        </div>
+      </div>
+
+      <!-- 8. LOGS TAB CONTENT -->
+      <div id="content-logs" class="space-y-4 hidden">
+        <div class="cyber-panel rounded-xl p-4 flex items-center justify-between"><input type="text" placeholder="Search logs..." class="bg-[#05080f] border border-slate-800 focus:border-[#00ff6e] text-xs font-tech px-3 py-1.5 rounded-lg outline-none text-white w-2/3"/><button class="text-xs text-[#00ff6e] font-tech font-bold uppercase border border-[#00ff6e]/20 px-3 py-1.5 rounded-lg">🔄</button></div>
+        <div class="cyber-panel rounded-xl p-8 text-center text-xs font-tech text-slate-600 uppercase tracking-widest">Stream network is empty. No logs recorded yet.</div>
+      </div>
+
+      <!-- 9. SETTINGS TAB CONTENT -->
+      <div id="content-settings" class="space-y-4 hidden">
+        <div class="cyber-panel rounded-xl p-5 space-y-2">
+          <label class="text-[10px] font-bold font-tech text-slate-500 tracking-wider uppercase block">Profile Name Configuration</label>
+          <input type="text" value="My First Profile" class="w-full bg-[#05080f] border border-slate-800 text-xs font-tech px-4 py-3 rounded-xl outline-none text-white"/>
+        </div>
+        <div class="cyber-panel rounded-xl p-5 flex items-center justify-between gap-4">
+          <div class="space-y-1"><h4 class="text-xs font-bold font-cyber text-white uppercase">Logs System Adjustments</h4><p class="text-[11px] font-tech text-slate-400 leading-snug">Fine tune your logs data storage properties.</p></div>
+          <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in"><input type="checkbox" checked id="toggle-set-1" class="toggle-checkbox hidden"/><label for="toggle-set-1" class="toggle-label block overflow-hidden h-5 rounded-full bg-slate-800 cursor-pointer"><span class="toggle-dot block h-5 w-5 rounded-full bg-white border-2 border-slate-800 transition-transform duration-200"></span></label></div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- High-Tech Secure Frame Footer -->
+  <footer class="w-full max-w-5xl mx-auto px-4 py-5 border-t border-slate-950 flex flex-col sm:flex-row items-center justify-between gap-3 text-[9px] font-bold uppercase tracking-widest text-slate-500 font-tech">
+    <div>// CORE MATRIX ENGINE &copy; 2026 NEXTDNS INC. SECURE INTERFACE LAYER.</div>
+    <div class="flex items-center gap-5"><a href="#" class="hover:text-[#00ff6e] transition-colors">Terms</a><a href="#" class="hover:text-[#00ff6e] transition-colors">Privacy</a></div>
+  </footer>
+
+  <!-- ================= JAVASCRIPT LOGIC CIRCUIT ================= -->
+  <script>
+    // ১ পেজ থেকে অন্য পেজে হুবহু যাওয়ার ম্যাজিক ফাংশন
+    function showPage(pageId) {
+      document.getElementById('home-page').classList.add('hidden');
+      document.getElementById('dashboard-page').classList.add('hidden');
+      document.getElementById('profile-selector').classList.add('hidden');
+      document.getElementById('profile-selector').classList.remove('flex');
+      
+      document.getElementById(pageId).classList.remove('hidden');
+      if(pageId === 'dashboard-page') {
+        document.getElementById('profile-selector').classList.remove('hidden');
+        document.getElementById('profile-selector').classList.add('flex');
+      }
+      window.scrollTo(0, 0);
+    }
+
+    // ভিডিওর মতো প্রতিটি ট্যাবে আলাদা আলাদা ক্লিক করে সেকশন ওপেন করার ফাংশন
+    function switchTab(tabName) {
+      // প্রথমে সব কন্টেন্ট হাইড করা
+      const contents = ['setup', 'security', 'privacy', 'parental', 'denylist', 'allowlist', 'analytics', 'logs', 'settings'];
+      contents.forEach(item => {
+        document.getElementById('content-' + item).classList.add('hidden');
+        document.getElementById('content-' + item).classList.remove('block');
+        document.getElementById('tab-' + item).classList.remove('active-tab');
+      });
+
+      // ক্লিক করা কাঙ্ক্ষিত ট্যাবটি সচল করা
+      document.getElementById('content-' + tabName).classList.remove('hidden');
+      document.getElementById('content-' + tabName).classList.add('block');
+      document.getElementById('tab-' + tabName).classList.add('active-tab');
+    }
+  </script>
+
+</body>
+</html>
