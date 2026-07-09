@@ -2,38 +2,77 @@
 <html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
-  <title>ZEEN DNS | Network Core</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NextDNS — Cyberpunk Network Core</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  
   <style>
-    body { background-color: #030508; color: #fff; font-family: 'JetBrains Mono', monospace; }
-    .cyber-panel { background: rgba(6, 11, 19, 0.7); border: 1px solid #00ff6e; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #030508; }
+    .cyber-panel { background: rgba(6, 11, 19, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(0, 255, 110, 0.15); }
+    .active-tab { color: #00ff6e; border-bottom: 2px solid #00ff6e; }
   </style>
 </head>
-<body class="p-6">
+<body class="text-slate-200 min-h-screen matrix-grid">
 
-  <!-- NAVIGATION -->
-  <nav class="flex justify-between items-center max-w-4xl mx-auto mb-10 border-b border-slate-800 pb-4">
-    <h1 class="text-xl font-black text-[#00ff6e] cursor-pointer" onclick="showPage('home-page')">🛡️ ZEEN DNS</h1>
-    <div>
-      <button onclick="showPage('signup-page')" class="text-xs border border-[#00ff6e] px-4 py-1 rounded hover:bg-[#00ff6e] hover:text-black">SIGN UP</button>
-      <button onclick="showPage('dashboard-page')" class="text-xs ml-2 bg-[#00ff6e] text-black px-4 py-1 rounded font-bold">DASHBOARD</button>
+  <!-- Header Module -->
+  <header class="w-full max-w-5xl mx-auto px-4 py-5 flex items-center justify-between border-b border-slate-900/80">
+    <div class="flex items-center gap-2.5 cursor-pointer" onclick="pageAction('home-page')">
+      <span class="text-lg font-black font-cyber text-white">Next<span class="text-[#00ff6e]">DNS</span></span>
     </div>
-  </nav>
+    <div class="flex items-center gap-4">
+      <button onclick="pageAction('signup-page')" class="text-[10px] uppercase font-bold border border-[#00ff6e]/30 px-4 py-1.5 rounded-lg hover:bg-[#00ff6e]/10 transition-all">Sign Up</button>
+      <span id="profile-selector" class="hidden text-xs font-tech text-slate-400">my.nextdns.io</span>
+    </div>
+  </header>
 
-  <!-- HOME PAGE -->
-  <main id="home-page" class="text-center py-20">
-    <h1 class="text-5xl font-black mb-4 uppercase">Secure Your Internet</h1>
-    <p class="text-slate-400">NextDNS interface for modern users.</p>
+  <!-- PAGE 1: HERO -->
+  <main id="home-page" class="w-full max-w-4xl mx-auto px-5 py-16 text-center">
+    <h1 class="text-5xl font-black text-white font-cyber uppercase">Modern Firewall</h1>
+    <button onclick="pageAction('dashboard-page')" class="mt-8 bg-[#00ff6e] text-[#030508] font-black text-xs px-8 py-4 rounded-xl shadow-[0_0_25px_rgba(0,255,110,0.35)]">TRY IT NOW →</button>
   </main>
 
-  <!-- SIGNUP PAGE (কার্যকর বাটনসহ) -->
-  <main id="signup-page" class="hidden max-w-sm mx-auto">
-    <div class="cyber-panel p-8 rounded-xl space-y-4">
-      <h2 class="text-xl font-bold text-[#00ff6e]">CREATE ACCOUNT</h2>
-      <input type="email" id="email" placeholder="Email Address" class="w-full bg-slate-900 p-3 rounded border border-slate-700">
-      <input type="password" id="password" placeholder="Password" class="w-full bg-slate-900 p-3 rounded border border-slate-700">
-      <button onclick="handleSignup()" class="w-full bg-[#00ff6e] text-black font-bold py-3 rounded uppercase">Register Now</button>
+  <!-- PAGE 2: SIGN UP -->
+  <main id="signup-page" class="hidden w-full max-w-sm mx-auto p-6">
+    <div class="cyber-panel rounded-2xl p-8 space-y-4">
+      <h2 class="text-lg font-bold text-center">CREATE ACCOUNT</h2>
+      <input type="email" placeholder="Email Address" class="w-full bg-[#05080f] border border-slate-800 p-3 rounded-lg text-xs outline-none">
+      <input type="password" placeholder="Password" class="w-full bg-[#05080f] border border-slate-800 p-3 rounded-lg text-xs outline-none">
+      <button onclick="playSound()" class="w-full bg-[#00ff6e] text-black font-black text-xs py-3 rounded-lg uppercase">Register</button>
     </div>
+  </main>
+
+  <!-- PAGE 3: DASHBOARD (সংক্ষেপিত) -->
+  <main id="dashboard-page" class="hidden w-full max-w-5xl mx-auto px-4 py-6">
+    <div class="flex gap-6 border-b border-slate-900 pb-2">
+      <button onclick="switchTab('setup')" id="tab-setup" class="active-tab text-xs uppercase font-bold pb-1">Setup</button>
+      <button onclick="switchTab('security')" id="tab-security" class="text-xs uppercase font-bold pb-1">Security</button>
+    </div>
+    <div id="content-setup" class="cyber-panel p-6 mt-6 rounded-xl">Endpoint: 84ace1.dns.nextdns.io</div>
+  </main>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // সাউন্ড ফাইল
+    const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3');
+    function playSound() { audio.currentTime = 0; audio.play(); }
+
+    // পেজ কন্ট্রোল
+    function pageAction(pageId) {
+      playSound();
+      document.querySelectorAll('main').forEach(m => m.classList.add('hidden'));
+      document.getElementById(pageId).classList.remove('hidden');
+      if(pageId === 'dashboard-page') document.getElementById('profile-selector').classList.remove('hidden');
+    }
+
+    // ট্যাব কন্ট্রোল
+    function switchTab(tabName) {
+      playSound();
+      // ট্যাব সুইচের কোড এখানে থাকবে
+    }
+  </script>
+</body>
+</html>
   </main>
 
   <!-- DASHBOARD PAGE -->
