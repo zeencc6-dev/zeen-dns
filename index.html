@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZEEN DNS Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #0f172a; color: #e2e8f0; font-family: sans-serif; }
+    .bg-panel { background-color: #1e293b; border: 1px solid #334155; }
+    .tab-active { color: #3b82f6; border-bottom: 2px solid #3b82f6; font-weight: bold; }
+  </style>
+</head>
+<body class="p-4 md:p-8">
+
+  <!-- Header -->
+  <div class="flex items-center justify-between mb-8">
+    <div class="flex items-center gap-4">
+      <h1 class="text-2xl font-bold flex items-center gap-2 text-white">🛡️ ZEEN DNS</h1>
+      <select class="bg-slate-800 text-white p-2 rounded border border-slate-600 text-sm">
+        <option>My First Profile</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Tabs Navigation -->
+  <div class="flex flex-wrap gap-4 border-b border-slate-700 mb-6 text-sm">
+    <button onclick="showTab('setup')" class="pb-2 tab-active" id="tab-setup">Setup</button>
+    <button onclick="showTab('security')" class="pb-2" id="tab-security">Security</button>
+    <button onclick="showTab('privacy')" class="pb-2" id="tab-privacy">Privacy</button>
+    <button onclick="showTab('parental')" class="pb-2" id="tab-parental">Parental Control</button>
+    <button onclick="showTab('analytics')" class="pb-2" id="tab-analytics">Analytics</button>
+    <button onclick="showTab('logs')" class="pb-2" id="tab-logs">Logs</button>
+    <button onclick="showTab('settings')" class="pb-2" id="tab-settings">Settings</button>
+  </div>
+
+  <!-- Content Sections -->
+  <div id="content-area">
+    <!-- Setup Tab -->
+    <div id="setup" class="space-y-4">
+      <div class="bg-panel p-6 rounded-lg">
+        <p class="text-red-400 font-semibold mb-2">🔴 This device is not using ZEEN DNS.</p>
+        <p class="text-sm text-slate-400">This device is currently using a standard DNS resolver.</p>
+        <div class="mt-6 border-t border-slate-700 pt-4">
+          <p class="font-bold text-white mb-2">Endpoints</p>
+          <p class="text-sm">ID: <span class="font-mono text-blue-400">84ace1</span></p>
+          <p class="text-sm">DNS-over-HTTPS: <span class="font-mono text-slate-300">https://dns.zeendns.io/84ace1</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Security Tab -->
+    <div id="security" class="hidden space-y-4">
+      <div class="bg-panel p-4 rounded flex justify-between items-center">
+        <div>
+          <p class="font-semibold text-white">Threat Intelligence Feeds</p>
+          <p class="text-xs text-slate-400">Block malware and phishing domains.</p>
+        </div>
+        <input type="checkbox" checked class="w-6 h-6 accent-blue-500">
+      </div>
+      <div class="bg-panel p-4 rounded flex justify-between items-center">
+        <div>
+          <p class="font-semibold text-white">Google Safe Browsing</p>
+          <p class="text-xs text-slate-400">Examine billions of URLs per day.</p>
+        </div>
+        <input type="checkbox" checked class="w-6 h-6 accent-blue-500">
+      </div>
+    </div>
+
+    <!-- Privacy Tab -->
+    <div id="privacy" class="hidden space-y-4">
+      <div class="bg-panel p-6 rounded">
+        <p class="font-bold text-white mb-2">Blocklists</p>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded text-sm">+ Add a Blocklist</button>
+      </div>
+    </div>
+
+    <!-- Parental Control Tab -->
+    <div id="parental" class="hidden bg-panel p-6 rounded">
+      <p class="font-bold text-white mb-4">Websites, Apps & Games</p>
+      <button class="bg-slate-700 text-white px-4 py-2 rounded text-sm">Add a website, app or game</button>
+    </div>
+
+    <!-- Analytics Tab -->
+    <div id="analytics" class="hidden bg-panel p-6 rounded text-center">
+      <p class="text-slate-400">No queries recorded yet.</p>
+    </div>
+
+    <!-- Logs Tab -->
+    <div id="logs" class="hidden bg-panel p-6 rounded text-center">
+      <p class="text-slate-400">No logs recorded yet.</p>
+    </div>
+
+    <!-- Settings Tab -->
+    <div id="settings" class="hidden bg-panel p-6 rounded">
+      <label class="block text-sm text-slate-400 mb-2">Profile Name</label>
+      <input type="text" value="My First Profile" class="bg-slate-900 p-2 rounded w-full border border-slate-600">
+    </div>
+  </div>
+
+  <script>
+    function showTab(tab) {
+      // Hide all contents
+      document.querySelectorAll('#content-area > div').forEach(div => div.classList.add('hidden'));
+      // Show selected content
+      document.getElementById(tab).classList.remove('hidden');
+      // Update tabs UI
+      document.querySelectorAll('button').forEach(btn => btn.classList.remove('tab-active'));
+      document.getElementById('tab-' + tab).classList.add('tab-active');
+    }
+  </script>
+</body>
+</html>
