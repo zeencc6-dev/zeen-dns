@@ -1,39 +1,71 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NextDNS — Cyberpunk Network Core</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
-  
-  <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #030508; }
-    .cyber-panel { background: rgba(6, 11, 19, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(0, 255, 110, 0.15); }
-    .active-tab { color: #00ff6e; border-bottom: 2px solid #00ff6e; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stonic AI Interface</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #05070a; color: #cbd5e1; font-family: sans-serif; overflow-x: hidden; }
+        .glass { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(56, 189, 248, 0.2); }
+        .glow-cyan { text-shadow: 0 0 10px rgba(6, 182, 212, 0.8); }
+        .border-glow { border: 1px solid rgba(6, 182, 212, 0.3); box-shadow: 0 0 15px rgba(6, 182, 212, 0.1); }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; }
+    </style>
 </head>
-<body class="text-slate-200 min-h-screen matrix-grid">
+<body class="p-4 md:p-6">
 
-  <!-- Header Module -->
-  <header class="w-full max-w-5xl mx-auto px-4 py-5 flex items-center justify-between border-b border-slate-900/80">
-    <div class="flex items-center gap-2.5 cursor-pointer" onclick="pageAction('home-page')">
-      <span class="text-lg font-black font-cyber text-white">Next<span class="text-[#00ff6e]">DNS</span></span>
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4">
+        
+        <!-- Left Section -->
+        <div class="lg:col-span-3 space-y-4">
+            <div class="glass p-4 rounded-xl border-glow">
+                <div class="w-full h-32 bg-gray-900 rounded-lg mb-2 flex items-center justify-center border border-cyan-900/50">
+                    <span class="text-cyan-500 animate-pulse">LIVE FEED</span>
+                </div>
+                <h3 class="text-cyan-400 text-[10px] uppercase font-bold">Sat-Link Feed</h3>
+            </div>
+            <div class="glass p-4 rounded-xl border-glow">
+                <h3 class="text-cyan-400 text-[10px] uppercase font-bold mb-2">Today Headlines</h3>
+                <p class="text-[11px] text-gray-400 leading-relaxed">Pakistan's US-Iran mediation bid... Terrorists killed in Bannu...</p>
+            </div>
+        </div>
+
+        <!-- Middle Section -->
+        <div class="lg:col-span-6 space-y-4">
+            <div class="glass p-6 rounded-xl border-glow text-center">
+                <h1 class="text-2xl font-black text-cyan-400 glow-cyan tracking-tighter">SYSTEM STANDBY</h1>
+                <div class="mt-8 w-24 h-24 mx-auto rounded-full border border-dashed border-cyan-500 flex items-center justify-center">
+                    <span class="text-[10px]">ACTIVE</span>
+                </div>
+            </div>
+            <div class="glass p-6 rounded-xl border-glow h-64 flex flex-col justify-between">
+                <h3 class="text-cyan-400 text-[10px] uppercase font-bold">Visual Hub</h3>
+                <div class="flex-grow flex items-center justify-center">
+                    <div class="text-gray-600 border border-gray-800 p-4 w-full text-center text-xs italic">Flowchart Simulation Active</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Section -->
+        <div class="lg:col-span-3 glass p-4 rounded-xl border-glow h-[500px] overflow-y-auto">
+            <h3 class="text-cyan-400 text-[10px] uppercase font-bold mb-4">Chats | Logs</h3>
+            <div class="space-y-4 text-[11px] text-gray-400">
+                <p>Delegating parallel tasks to background workers...</p>
+                <div class="p-2 bg-red-950/30 border border-red-500/30 text-red-400 rounded">
+                    OS_EXEC FAILED
+                </div>
+                <p>Retrying system connection...</p>
+            </div>
+        </div>
     </div>
-    <div class="flex items-center gap-4">
-      <button onclick="pageAction('signup-page')" class="text-[10px] uppercase font-bold border border-[#00ff6e]/30 px-4 py-1.5 rounded-lg hover:bg-[#00ff6e]/10 transition-all">Sign Up</button>
-      <span id="profile-selector" class="hidden text-xs font-tech text-slate-400">my.nextdns.io</span>
-    </div>
-  </header>
 
-  <!-- PAGE 1: HERO -->
-  <main id="home-page" class="w-full max-w-4xl mx-auto px-5 py-16 text-center">
-    <h1 class="text-5xl font-black text-white font-cyber uppercase">Modern Firewall</h1>
-    <button onclick="pageAction('dashboard-page')" class="mt-8 bg-[#00ff6e] text-[#030508] font-black text-xs px-8 py-4 rounded-xl shadow-[0_0_25px_rgba(0,255,110,0.35)]">TRY IT NOW →</button>
-  </main>
-
-  <!-- PAGE 2: SIGN UP -->
-  <main id="signup-page" class="hidden w-full max-w-sm mx-auto p-6">
+    <script>
+        console.log("Stonic AI System Initialized.");
+    </script>
+</body>
+</html>
     <div class="cyber-panel rounded-2xl p-8 space-y-4">
       <h2 class="text-lg font-bold text-center">CREATE ACCOUNT</h2>
       <input type="email" placeholder="Email Address" class="w-full bg-[#05080f] border border-slate-800 p-3 rounded-lg text-xs outline-none">
